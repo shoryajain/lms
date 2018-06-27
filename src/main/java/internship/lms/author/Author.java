@@ -4,6 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import internship.lms.view.View;
+
 @Entity
 @Table(name = "author")
 public class Author {
@@ -11,8 +15,8 @@ public class Author {
 	@Id
 	private String id;
 	private String email;
-	private String fname;
-	private String lname;
+	@JsonView(View.AuthorNamesOnly.class)
+	private String name;
 	private int age;
 	private long pno;
 	
@@ -20,27 +24,20 @@ public class Author {
 		super();
 	}
 	
-	public Author(String id, String email, String fname, String lname, int age, long pno) {
+	public Author(String id, String email, String name, int age, long pno) {
 		super();
 		this.id = id;
 		this.email = email;
-		this.fname = fname;
-		this.lname = lname;
+		this.name = name;
 		this.age = age;
 		this.pno = pno;
 	}
 
-	public String getFname() {
-		return fname;
+	public String getName() {
+		return name;
 	}
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
-	public String getLname() {
-		return lname;
-	}
-	public void setLname(String lname) {
-		this.lname = lname;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getEmail() {
 		return email;

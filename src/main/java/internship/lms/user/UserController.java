@@ -56,15 +56,15 @@ public class UserController {
 	public List<Book> getBooks(@PathVariable String uname) {
 		return userService.getBooks(uname);
 	}
-	
-	@RequestMapping(method=RequestMethod.PUT, value="/user/{uname}/newbook") 
-	public boolean issueBook(@RequestBody String bname, @PathVariable String uname) {
-		return userService.issueBook(bname,uname);
-	}
 
 	@RequestMapping(method=RequestMethod.POST, value="/user") 
 	public void addUser(@RequestBody User user) {
 		userService.addUser(user);
+	}
+	
+	@RequestMapping(method=RequestMethod.PUT, value="/user/{uname}/newbook") 
+	public boolean issueBook(@RequestBody String bname, @PathVariable String uname) {
+		return userService.issueBook(bname,uname);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/user/{uname}")

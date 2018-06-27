@@ -1,6 +1,7 @@
 package internship.lms.book;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,4 @@ public class BookService {
 	public void deleteBook(long id) {
 		bookRepository.delete(id);
 	}
-
 }

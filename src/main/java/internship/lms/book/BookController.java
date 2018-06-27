@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import internship.lms.view.View;
+
 @RestController
 public class BookController {
 
@@ -38,6 +42,18 @@ public class BookController {
 	@RequestMapping("/book/{name}")
 	public Book getBookByName(@PathVariable String name) {
 		return bookService.getBookByName(name);
+	}
+	
+	@RequestMapping("/books/genres")
+	@JsonView(View.GenresOnly.class)
+	public List<Book> getGenresOnly() {
+		return bookService.getAllBooks();
+	}
+	
+	@RequestMapping("/books/authors")
+	@JsonView(View.AuthorNamesOnly.class)
+	public List<Book> getAuthorNamesOnly() {
+		return bookService.getAllBooks();
 	}
 
 	@RequestMapping(method=RequestMethod.POST, value="/book/{authorId}") 

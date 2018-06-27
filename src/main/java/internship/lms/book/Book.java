@@ -9,7 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import internship.lms.author.Author;
+import internship.lms.view.View;
 
 @Entity
 @Table(name = "book")
@@ -21,6 +24,7 @@ public class Book {
 	private String name;
 	private String lang;
 	private String isbn;
+	@JsonView(View.GenresOnly.class)
 	private String genre;
 	private int edition;
 	private int copies;
@@ -28,6 +32,7 @@ public class Book {
 	
 	@ManyToOne
 	@JoinColumn(name = "author_id", nullable=false)
+	@JsonView(View.AuthorNamesOnly.class)
 	private Author author;
 	
 	public Book( ) {
