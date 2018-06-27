@@ -32,10 +32,10 @@ public class Book {
 	
 	public Book( ) {
 		super();
+		this.icopies = 0;
 	}
 	
-	public Book(int id, String name, String lang, String isbn, String genre, int edition, int copies, int icopies,
-			Author author) {
+	public Book(int id, String name, String lang, String isbn, String genre, int edition, int copies, Author author) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -44,7 +44,7 @@ public class Book {
 		this.genre = genre;
 		this.edition = edition;
 		this.copies = copies;
-		this.icopies = icopies;
+		this.icopies = 0;
 		this.author = author;
 	}
 	
