@@ -13,6 +13,20 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
+	public boolean checkUserPno(long pno) {
+		User user = userRepository.findByPno(pno);
+		if(user.getAge() == 0) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
+	public User getUserByPno(long pno) {
+		return userRepository.findByPno(pno);
+	}
+	
 	public List<User> getAllUsers() {
 		 List<User> users = new ArrayList<>();
 		 userRepository.findAll().forEach(users::add);

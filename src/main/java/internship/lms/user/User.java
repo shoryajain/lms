@@ -20,7 +20,7 @@ public class User {
 	private String fname;
 	private String lname;
 	private int age;
-	private int pno;
+	private long pno;
 	private String email;	
 	
 	@OneToMany
@@ -29,9 +29,10 @@ public class User {
 	
 	public User() {
 		super();
+		this.age=0;
 	}
 
-	public User(String uname, String pass, String fname, String lname, int age, int pno, String email, List<Book> book) {
+	public User(String uname, String pass, String fname, String lname, int age, long pno, String email, List<Book> book) {
 		super();
 		this.uname = uname;
 		this.pass = pass;
@@ -83,11 +84,11 @@ public class User {
 		this.age = age;
 	}
 
-	public int getPno() {
+	public long getPno() {
 		return pno;
 	}
 
-	public void setPno(int pno) {
+	public void setPno(long pno) {
 		this.pno = pno;
 	}
 

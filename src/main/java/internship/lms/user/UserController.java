@@ -30,7 +30,22 @@ public class UserController {
 		return "Please enter a valid id";
 	}
 	
-	@RequestMapping("/user/{uname}")
+	@RequestMapping("/userforgetpass/{pno}")
+	public boolean checkUserPno(@PathVariable long pno) {
+		return userService.checkUserPno(pno);
+	}
+	
+	@RequestMapping("/userforgetpass/true/{pno}") 
+	public User getUnameAndPass(@PathVariable long pno) {
+		return userService.getUserByPno(pno);
+	}
+	
+	@RequestMapping("/userforgetpass/false") 
+	public String getUnameAndPass() {
+		return "No user with given phone number exists";
+	}
+	
+	@RequestMapping("/user/{uname}") 
 	public User getUser(@PathVariable String uname) {
 		return userService.getUser(uname);
 	}
