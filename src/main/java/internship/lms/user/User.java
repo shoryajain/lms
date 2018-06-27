@@ -8,23 +8,34 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import internship.lms.book.Book;
+import internship.lms.view.View;
 
 @Entity
 @Table(name = "user")
 public class User {
 	
 	@Id
+	@JsonView(View.UserLoginDetails.class)
 	private String uname;
+	@JsonView(View.UserLoginDetails.class)
 	private String pass;
+	@JsonView(View.UserWithoutBooks.class)
 	private String fname;
+	@JsonView(View.UserWithoutBooks.class)
 	private String lname;
+	@JsonView(View.UserWithoutBooks.class)
 	private int age;
+	@JsonView(View.UserWithoutBooks.class)
 	private long pno;
+	@JsonView(View.UserWithoutBooks.class)
 	private String email;	
 	
 	@OneToMany
 	@JoinColumn(name = "book_id", nullable=true)
+	@JsonView(View.IssuedBooks.class)
 	private List<Book> books;
 	
 	public User() {

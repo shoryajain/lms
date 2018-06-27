@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import internship.lms.view.View;
+
 
 @Entity
 @Table(name = "author")
@@ -13,6 +17,7 @@ public class Author {
 	@Id
 	private String id;
 	private String email;
+	@JsonView(View.MainDetails.class)
 	private String name;
 	private int age;
 	private long pno;
