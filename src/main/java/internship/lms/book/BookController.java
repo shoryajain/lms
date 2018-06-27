@@ -56,6 +56,16 @@ public class BookController {
 		return bookService.getAllBooks();
 	}
 
+	@RequestMapping("/books/total")
+	public int totalBooks() {
+		return bookService.totalBooks();
+	}
+	
+	@RequestMapping("/books/total/issued")
+	public int totalIsseudBooks() {
+		return bookService.totalIssuedBooks();
+	}
+	
 	@RequestMapping(method=RequestMethod.POST, value="/book/{authorId}") 
 	public void addTopic(@RequestBody Book book, @PathVariable String authorId) {
 		bookService.addBook(book, authorId);

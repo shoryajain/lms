@@ -48,4 +48,22 @@ public class BookService {
 	public void deleteBook(long id) {
 		bookRepository.delete(id);
 	}
+	
+	public int totalBooks() {
+		int num = 0;
+		List<Book> books = this.getAllBooks();
+		for(Book b: books) {
+			num = num+b.getCopies();
+		}
+		return num;
+	}
+	
+	public int totalIssuedBooks() {
+		int num = 0;
+		List<Book> books = this.getAllBooks();
+		for(Book b: books) {
+			num = num+b.getIcopies();
+		}
+		return num;
+	}
 }
