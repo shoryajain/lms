@@ -6,14 +6,14 @@ Back-end configurations using Rest APIs for a library management system, with da
 * Any IDE 
 * Maven
 * Postman
-* Java (version 1.8)
+* Java 
 * MySQL
 
 ##Getting Started
 
 To use on a local system, import the project in any IDE of your choice. The database being used here is MySQL. In case you need to use another supported databse, remove the MySQL dependecies from pom.xml and include the dependencies for database you want to use and add the corresponding driver in applications.properties.
 
-Create a databse named 'lmsdb' as well as a separate user called 'intern' with password 'internship', granting it all access to the database. If you are using this program for the first time, you will also need to change the last propertry from 'none' to 'create'. 
+Create a databse named 'lmsdb' as well as a separate user called 'intern' with password 'internship', granting it all access to the database. If you are using this program for the first time, you will also need to change the last propertry from 'none' to 'create'. After it, change it to 'none' before running it again or your data won't be saved.
 
 Now, build and run the project as a Java application and use Postman for sending requests.
 
