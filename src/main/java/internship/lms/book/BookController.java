@@ -22,8 +22,8 @@ public class BookController {
 		return bookService.getAllBooks();
 	}
 	
-	@RequestMapping("/bookcheck") 
-	public boolean checkBookId(@RequestBody long id) {
+	@RequestMapping("/bookcheck/{id}") 
+	public boolean checkBookId(@PathVariable long id) {
 		return bookService.checkBookId(id);
 	}
 	
@@ -60,6 +60,11 @@ public class BookController {
 	@RequestMapping("/books/total")
 	public int totalBooks() {
 		return bookService.totalBooks();
+	}
+	
+	@RequestMapping("/books/total/unique")
+	public int totalUniqueBooks() {
+		return bookService.totalUniqueBooks();
 	}
 	
 	@RequestMapping("/books/total/issued")

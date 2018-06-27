@@ -22,8 +22,8 @@ public class UserController {
 		return userService.getAllUsers();
 	}
 	
-	@RequestMapping("/usercheck") 
-	public boolean checkUserId(@RequestBody String uname) {
+	@RequestMapping("/usercheck/{uname}") 
+	public boolean checkUserId(@PathVariable String uname) {
 		return userService.checkUserUname(uname);
 	}
 	

@@ -81,6 +81,16 @@ public class BookService {
 		return num;
 	}
 	
+
+	public int totalUniqueBooks() {
+		int num = 0;
+		List<Book> books = this.getAllBooks();
+		for(Book b: books) {
+			num = num++;
+		}
+		return num;
+	}
+	
 	public int totalIssuedBooks() {
 		int num = 0;
 		List<Book> books = this.getAllBooks();

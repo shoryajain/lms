@@ -20,8 +20,8 @@ public class AuthorController {
 		return authorService.getAllAuthors();
 	}
 	
-	@RequestMapping("/authorcheck") 
-	public boolean checkAuthorId(@RequestBody String id) {
+	@RequestMapping("/authorcheck/{id}") 
+	public boolean checkAuthorId(@PathVariable String id) {
 		return authorService.checkAuthorId(id);
 	}
 	
