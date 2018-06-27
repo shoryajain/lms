@@ -1,8 +1,9 @@
 package internship.lms.book;
 
 import java.util.ArrayList;
-
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,5 +66,29 @@ public class BookService {
 			num = num+b.getIcopies();
 		}
 		return num;
+	}
+	
+	public Set<Book> totalIssuedBooksByAuthor(String name) {
+		Set<Book> books = new HashSet<>();
+		List<Book> boks = this.getAllBooks();
+		for(Book b: boks) {
+			if(b.getIcopies()>0) {
+				if(b.getAuthor().getName().equals(name))
+					books.add(b);
+			}
+		}
+		return books;
+	}
+	
+	public Set<Book> totalIssuedBooksByBookName(String name) {
+		Set<Book> books = new HashSet<>();
+		List<Book> boks = this.getAllBooks();
+		for(Book b: boks) {
+			if(b.getIcopies()>0) {
+				if(b.getName().equals(name))
+					books.add(b);
+			}
+		}
+		return books;
 	}
 }

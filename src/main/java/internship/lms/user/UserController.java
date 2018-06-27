@@ -28,7 +28,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/user")
-	public String getUser() {
+	public String getUserr() {
 		return "Please enter a valid id";
 	}
 	
