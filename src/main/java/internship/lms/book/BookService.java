@@ -26,6 +26,10 @@ public class BookService {
 	public boolean checkBookId(long id) {
 		return bookRepository.exists(id);
 	}
+		
+	public Book getBookByName(String name) {
+		return bookRepository.findByName(name);
+	}
 	
 	public Book getBook(long id) {
 		return bookRepository.findOne(id);

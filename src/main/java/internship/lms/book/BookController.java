@@ -30,9 +30,14 @@ public class BookController {
 		return "Please enter a valid id";
 	}
 	
-	@RequestMapping("/book/{uname}")
+	@RequestMapping("/book/{id}")
 	public Book getBook(@PathVariable long id) {
 		return bookService.getBook(id);
+	}
+	
+	@RequestMapping("/book/{name}")
+	public Book getBookByName(@PathVariable String name) {
+		return bookService.getBookByName(name);
 	}
 
 	@RequestMapping(method=RequestMethod.POST, value="/book/{authorId}") 
@@ -40,7 +45,7 @@ public class BookController {
 		bookService.addBook(book, authorId);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT, value="/book/{uname}")
+	@RequestMapping(method=RequestMethod.PUT, value="/book/{id}")
 	public void updateTopic(@RequestBody Book book) {
 		bookService.updateBook(book);
 	}

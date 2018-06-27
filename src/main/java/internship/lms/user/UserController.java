@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import internship.lms.book.Book;
+
 @RestController
 public class UserController {
 	
@@ -48,6 +50,16 @@ public class UserController {
 	@RequestMapping("/user/{uname}") 
 	public User getUser(@PathVariable String uname) {
 		return userService.getUser(uname);
+	}
+	
+	@RequestMapping("/user/{uname}/issuedbooks")
+	public List<Book> getBooks(@PathVariable String uname) {
+		return userService.getBooks(uname);
+	}
+	
+	@RequestMapping(method=RequestMethod.PUT, value="/user/{uname}/newbook") 
+	public boolean issueBook(@RequestBody String bname, @PathVariable String uname) {
+		return userService.issueBook(bname,uname);
 	}
 
 	@RequestMapping(method=RequestMethod.POST, value="/user") 

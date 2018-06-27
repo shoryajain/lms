@@ -119,4 +119,8 @@ public class Book {
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
+	
+	public void issueCopy() {
+		this.icopies++;
+	}
 }

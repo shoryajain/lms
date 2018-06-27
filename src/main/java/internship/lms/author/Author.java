@@ -14,13 +14,13 @@ public class Author {
 	private String fname;
 	private String lname;
 	private int age;
-	private int pno;
+	private long pno;
 	
 	public Author() {
 		super();
 	}
 	
-	public Author(String id, String email, String fname, String lname, int age, int pno) {
+	public Author(String id, String email, String fname, String lname, int age, long pno) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -54,10 +54,10 @@ public class Author {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public int getPno() {
+	public long getPno() {
 		return pno;
 	}
-	public void setPno(int pno) {
+	public void setPno(long pno) {
 		this.pno = pno;
 	}
 
