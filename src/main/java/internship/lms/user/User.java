@@ -20,18 +20,19 @@ public class User {
 	private String fname;
 	private String lname;
 	private int age;
-	private int pno;
+	private long pno;
 	private String email;	
 	
 	@OneToMany
 	@JoinColumn(name = "book_id", nullable=true)
-	private List<Book> book;
+	private List<Book> books;
 	
 	public User() {
 		super();
+		this.age=0;
 	}
 
-	public User(String uname, String pass, String fname, String lname, int age, int pno, String email, List<Book> book) {
+	public User(String uname, String pass, String fname, String lname, int age, long pno, String email, List<Book> books) {
 		super();
 		this.uname = uname;
 		this.pass = pass;
@@ -40,7 +41,7 @@ public class User {
 		this.age = age;
 		this.pno = pno;
 		this.email = email;
-		this.book = book;
+		this.books = books;
 	}
 
 	public String getUname() {
@@ -83,11 +84,11 @@ public class User {
 		this.age = age;
 	}
 
-	public int getPno() {
+	public long getPno() {
 		return pno;
 	}
 
-	public void setPno(int pno) {
+	public void setPno(long pno) {
 		this.pno = pno;
 	}
 
@@ -99,11 +100,15 @@ public class User {
 		this.email = email;
 	}
 	
-	public List<Book> getBook() {
-		return book;
+	public List<Book> getBooks() {
+		return books;
 	}
 
-	public void setBook(List<Book> book) {
-		this.book = book;
+	public void setBook(List<Book> books) {
+		this.books = books;
+	}
+	
+	public void issuingBook(Book b) {
+		this.books.add(b);
 	}
 }

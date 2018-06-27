@@ -2,6 +2,7 @@ package internship.lms.book;
 
 import javax.persistence.Entity;
 
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -118,5 +119,9 @@ public class Book {
 
 	public void setAuthor(Author author) {
 		this.author = author;
+	}
+	
+	public void issueCopy() {
+		this.icopies++;
 	}
 }

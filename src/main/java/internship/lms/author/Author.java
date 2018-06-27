@@ -1,8 +1,10 @@
 package internship.lms.author;
 
 import javax.persistence.Entity;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "author")
@@ -11,36 +13,28 @@ public class Author {
 	@Id
 	private String id;
 	private String email;
-	private String fname;
-	private String lname;
+	private String name;
 	private int age;
-	private int pno;
+	private long pno;
 	
 	public Author() {
 		super();
 	}
 	
-	public Author(String id, String email, String fname, String lname, int age, int pno) {
+	public Author(String id, String email, String name, int age, long pno) {
 		super();
 		this.id = id;
 		this.email = email;
-		this.fname = fname;
-		this.lname = lname;
+		this.name = name;
 		this.age = age;
 		this.pno = pno;
 	}
 
-	public String getFname() {
-		return fname;
+	public String getName() {
+		return name;
 	}
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
-	public String getLname() {
-		return lname;
-	}
-	public void setLname(String lname) {
-		this.lname = lname;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getEmail() {
 		return email;
@@ -54,10 +48,10 @@ public class Author {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public int getPno() {
+	public long getPno() {
 		return pno;
 	}
-	public void setPno(int pno) {
+	public void setPno(long pno) {
 		this.pno = pno;
 	}
 
