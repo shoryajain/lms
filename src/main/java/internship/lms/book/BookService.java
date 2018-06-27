@@ -33,6 +33,10 @@ public class BookService {
 		return bookRepository.findByName(name);
 	}
 	
+	public Book getBookByAuthorName(String name) {
+		return bookRepository.findByauthorName(name);
+	}
+	
 	public Book getBook(long id) {
 		return bookRepository.findOne(id);
 	}
@@ -49,6 +53,24 @@ public class BookService {
 	public void deleteBook(long id) {
 		bookRepository.delete(id);
 	}
+	
+	public Set<String> getGenresOnly() {
+	Set<String> genres = new HashSet<>();
+	List<Book> boks = this.getAllBooks();
+	for(Book b: boks) {
+			genres.add(b.getGenre());
+		}
+	return genres;
+	}
+	
+	public Set<String> getAuthorNamesOnly() {
+		Set<String> authorNames = new HashSet<>();
+		List<Book> boks = this.getAllBooks();
+		for(Book b: boks) {
+				authorNames.add(b.getAuthor().getName());
+			}
+		return authorNames;
+		}
 	
 	public int totalBooks() {
 		int num = 0;
