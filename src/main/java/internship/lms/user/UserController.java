@@ -20,7 +20,7 @@ public class UserController {
 	@Autowired 
 	private UserService userService;
 	
-	@RequestMapping("/users")
+	@RequestMapping("/admin/users")
 	@JsonView(View.UserWithoutBooks.class)
 	public List<User> getAllUsers() {
 		return userService.getAllUsers();
@@ -52,7 +52,7 @@ public class UserController {
 		return "No user with given phone number exists";
 	}
 	
-	@RequestMapping("/user/{uname}")
+	@RequestMapping("/admin/user/{uname}")
 	@JsonView(View.UserWithoutBooks.class)
 	public User getUser(@PathVariable String uname) {
 		return userService.getUser(uname);
@@ -64,7 +64,7 @@ public class UserController {
 		return userService.getBooks(uname);
 	}
 
-	@RequestMapping(method=RequestMethod.POST, value="/user") 
+	@RequestMapping(method=RequestMethod.POST, value="/admin/user") 
 	public void addUser(@RequestBody User user) {
 		userService.addUser(user);
 	}

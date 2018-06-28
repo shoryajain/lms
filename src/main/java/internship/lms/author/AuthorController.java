@@ -15,12 +15,12 @@ public class AuthorController {
 	@Autowired 
 	private AuthorService authorService;
 	
-	@RequestMapping("/authors")
+	@RequestMapping("/admin/authors")
 	public List<Author> getAllAuthors() {
 		return authorService.getAllAuthors();
 	}
 	
-	@RequestMapping("/authorcheck/{id}") 
+	@RequestMapping("/admin/authorcheck/{id}") 
 	public boolean checkAuthorId(@PathVariable String id) {
 		return authorService.checkAuthorId(id);
 	}
@@ -30,22 +30,22 @@ public class AuthorController {
 		return "Please enter a valid id";
 	}
 	
-	@RequestMapping("/author/{id}")
+	@RequestMapping("/admin/author/{id}")
 	public Author getAuthor(@PathVariable String id) {
 		return authorService.getAuthor(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/author") 
+	@RequestMapping(method=RequestMethod.POST, value="/admin/author") 
 	public void addAuthor(@RequestBody Author author) {
 		authorService.addAuthor(author);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT, value="/author/{id}")
+	@RequestMapping(method=RequestMethod.PUT, value="/admin/author/{id}")
 	public void updateAuthor(@RequestBody Author author) {
 		authorService.updateAuthor(author);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/author/{id}")
+	@RequestMapping(method=RequestMethod.DELETE, value="/admin/author/{id}")
 	public void deleteAuthor(@PathVariable String id) {
 		authorService.deleteAuthor(id);
 	}

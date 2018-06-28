@@ -21,13 +21,13 @@ public class BookController {
 	@Autowired 
 	private BookService bookService;
 	
-	@RequestMapping("/books")
+	@RequestMapping("/admin/books")
 	@JsonView(View.AllBookDetails.class)
 	public List<Book> getAllBooks() {
 		return bookService.getAllBooks();
 	}
 	
-	@RequestMapping("/bookcheck/{id}") 
+	@RequestMapping("/admin/bookcheck/{id}") 
 	public boolean checkBookId(@PathVariable long id) {
 		return bookService.checkBookId(id);
 	}
@@ -37,7 +37,7 @@ public class BookController {
 		return "Please enter a valid id";
 	}
 	
-	@RequestMapping("/book/id/{id}")
+	@RequestMapping("/admin/book/id/{id}")
 	@JsonView(View.AllBookDetails.class)
 	public Book getBook(@PathVariable long id) {
 		return bookService.getBook(id);
@@ -71,45 +71,45 @@ public class BookController {
 		return bookService.getAuthorNamesOnly();
 	}
 
-	@RequestMapping("/books/total")
+	@RequestMapping("/admin/books/total")
 	public int totalBooks() {
 		return bookService.totalBooks();
 	}
 	
-	@RequestMapping("/books/total/unique")
+	@RequestMapping("/admin/books/total/unique")
 	public int totalUniqueBooks() {
 		return bookService.totalUniqueBooks();
 	}
 	
-	@RequestMapping("/books/total/issued")
+	@RequestMapping("/admin/books/total/issued")
 	public int totalIsseudBooks() {
 		return bookService.totalIssuedBooks();
 	}
 	
-	@RequestMapping("/books/total/issued/author/{name}")
+	@RequestMapping("/admin/books/total/issued/author/{name}")
 	@JsonView(View.AllBookDetails.class)
 	public Set<Book> totalIssuedBooksByAuthor(@PathVariable String name) {
 		return bookService.totalIssuedBooksByAuthor(name);
 	}
 	
-	@RequestMapping("/books/total/issued/book/{name}")
+	@RequestMapping("/admin/books/total/issued/book/{name}")
 	@JsonView(View.AllBookDetails.class)
 	public Set<Book> totalIssuedBooksByBookName(@PathVariable String name) {
 		return bookService.totalIssuedBooksByBookName(name);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/book/{authorId}") 
-	public void addTopic(@RequestBody Book book, @PathVariable String authorId) {
+	@RequestMapping(method=RequestMethod.POST, value="/admin/book/{authorId}") 
+	public void addBook(@RequestBody Book book, @PathVariable String authorId) {
 		bookService.addBook(book, authorId);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT, value="/book/{id}")
-	public void updateTopic(@RequestBody Book book) {
+	@RequestMapping(method=RequestMethod.PUT, value="/admin/book/{id}")
+	public void updateBook(@RequestBody Book book) {
 		bookService.updateBook(book);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/book/{id}")
-	public void deleteTopic(@PathVariable long id) {
+	@RequestMapping(method=RequestMethod.DELETE, value="/admin/book/{id}")
+	public void deleteBook(@PathVariable long id) {
 		bookService.deleteBook(id);
 	}
 }
