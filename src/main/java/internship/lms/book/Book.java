@@ -10,7 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import internship.lms.author.Author;
+import internship.lms.view.View;
 
 @Entity
 @Table(name = "book")
@@ -18,17 +21,26 @@ public class Book {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(View.AllBookDetails.class)
 	private long id;
+	@JsonView(View.MainDetails.class)
 	private String name;
+	@JsonView(View.MainDetails.class)
 	private String lang;
+	@JsonView(View.MainDetails.class)
 	private String isbn;
+	@JsonView(View.MainDetails.class)
 	private String genre;
+	@JsonView(View.MainDetails.class)
 	private int edition;
+	@JsonView(View.AllBookDetails.class)
 	private int copies;
+	@JsonView(View.AllBookDetails.class)
 	private int icopies;
 	
 	@ManyToOne
 	@JoinColumn(name = "author_id", nullable=false)
+	@JsonView(View.MainDetails.class)
 	private Author author;
 	
 	public Book( ) {

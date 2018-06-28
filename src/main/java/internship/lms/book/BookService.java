@@ -123,4 +123,8 @@ public class BookService {
 		}
 		return books;
 	}
+
+	public Book getBookByLang(String lang) {
+		return bookRepository.findByLang(lang);
+	}
 }

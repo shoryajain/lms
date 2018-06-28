@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import internship.lms.book.Book;
+import internship.lms.view.View;
 
 @RestController
 public class UserController {
@@ -18,6 +21,7 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping("/users")
+	@JsonView(View.UserWithoutBooks.class)
 	public List<User> getAllUsers() {
 		return userService.getAllUsers();
 	}
@@ -37,7 +41,8 @@ public class UserController {
 		return userService.checkUserPno(pno);
 	}
 	
-	@RequestMapping("/userforgetpass/true/{pno}") 
+	@RequestMapping("/userforgetpass/true/{pno}")
+	@JsonView(View.UserLoginDetails.class)
 	public User getUnameAndPass(@PathVariable long pno) {
 		return userService.getUserByPno(pno);
 	}
@@ -47,12 +52,14 @@ public class UserController {
 		return "No user with given phone number exists";
 	}
 	
-	@RequestMapping("/user/{uname}") 
+	@RequestMapping("/user/{uname}")
+	@JsonView(View.UserWithoutBooks.class)
 	public User getUser(@PathVariable String uname) {
 		return userService.getUser(uname);
 	}
 	
 	@RequestMapping("/user/{uname}/issuedbooks")
+	@JsonView(View.IssuedBooks.class)
 	public List<Book> getBooks(@PathVariable String uname) {
 		return userService.getBooks(uname);
 	}
