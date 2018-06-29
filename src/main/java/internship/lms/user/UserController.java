@@ -64,7 +64,7 @@ public class UserController {
 		return userService.getBooks(uname);
 	}
 
-	@RequestMapping(method=RequestMethod.POST, value="/admin/user") 
+	@RequestMapping(method=RequestMethod.POST, value="/adduser") 
 	public void addUser(@RequestBody User user) {
 		userService.addUser(user);
 	}

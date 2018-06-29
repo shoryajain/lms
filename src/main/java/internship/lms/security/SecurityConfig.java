@@ -1,5 +1,6 @@
 package internship.lms.security;
 
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource)
 		.usersByUsernameQuery("select uname,pass,enabled from user where uname=?")
-		.authoritiesByUsernameQuery("select username, role from user_roles where username=?");
+		.authoritiesByUsernameQuery("select user_uname, role from user_roles where user_uname=?");
 	}
 	
 	@Override
@@ -31,10 +32,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
 				.antMatchers("/test2.html").hasRole("ADMIN")
 				.antMatchers("/userforgetpass/**").hasRole("ANONYMOUS")
+				.antMatchers("/adduser").hasRole("ANONYMOUS")
+				.antMatchers("/userforgetpass/**").hasRole("USER")
+				.antMatchers("/adduser").hasRole("USER")
+				.antMatchers("/**").hasRole("ADMIN")
 				.antMatchers("/**").hasRole("USER")
 				.and().formLogin().loginPage("/login.jsp").successHandler(successHandler)
 				.permitAll().and().logout().permitAll();
-
 	}
 
 } 
