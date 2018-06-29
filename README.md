@@ -54,7 +54,7 @@ Unless specified, the methods APIS are Get methods
 * /user/{uname}/issuedbooks - Used to return books issued by a user based on username passed
 * /admin/user(Post Method) - Used to add an user passed to it 
 * /user/{uname}/newbook (Put Method) - Used to add a book issued to the user based on username passed 
-* /user/{uname} (Put Method) - Used to edit a user's detials based on username passed
+* /user/{uname} (Put Method) - Used to edit a user's details based on username passed
 * /user/{uname} (Delete Method) - Used to delete a user
 
 ##Built Using
