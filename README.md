@@ -44,8 +44,8 @@ Unless specified, the methods APIS are Get methods
 * /admin/book/{id} (Put Method) - Used to edit a book's details based on id passed
 * /admin/book/{id} (Delete Method) - Used to delete a book based on id passed
 
-* /admin/users- To return a list of all books
-* /usercheck/{uname}- Checks if a particular book exists or not based on username passed
+* /addusers- To return a list of all users
+* /usercheck/{uname}- Checks if a particular user exists or not based on username passed
 * /user- Used to display a warning message saying id is not valid
 * /userforgetpass/{pno}- Used to check if a particular phone number exists or not by passing it
 * /userforgetpass/true/{pno} - Used to return user details to which passed phone number matches

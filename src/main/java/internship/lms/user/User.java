@@ -22,9 +22,9 @@ public class User {
 	private String uname;
 	@JsonView(View.UserLoginDetails.class)
 	private String pass;
-	@JsonView(View.UserWithoutBooks.class)
+	@JsonView(View.UserNameAlso.class)
 	private String fname;
-	@JsonView(View.UserWithoutBooks.class)
+	@JsonView(View.UserNameAlso.class)
 	private String lname;
 	@JsonView(View.UserWithoutBooks.class)
 	private int age;
