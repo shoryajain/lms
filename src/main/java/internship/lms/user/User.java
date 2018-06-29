@@ -31,7 +31,8 @@ public class User {
 	@JsonView(View.UserWithoutBooks.class)
 	private long pno;
 	@JsonView(View.UserWithoutBooks.class)
-	private String email;	
+	private String email;
+	private int enabled;
 	
 	@OneToMany
 	@JoinColumn(name = "book_id", nullable=true)
@@ -41,6 +42,7 @@ public class User {
 	public User() {
 		super();
 		this.age=0;
+		this.enabled = 1;
 	}
 
 	public User(String uname, String pass, String fname, String lname, int age, long pno, String email, List<Book> books) {
@@ -53,6 +55,7 @@ public class User {
 		this.pno = pno;
 		this.email = email;
 		this.books = books;
+		this.enabled = 1;
 	}
 
 	public String getUname() {
