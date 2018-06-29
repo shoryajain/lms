@@ -35,6 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/adduser").hasRole("ANONYMOUS")
 				.antMatchers("/userforgetpass/**").hasRole("USER")
 				.antMatchers("/adduser").hasRole("USER")
+				.antMatchers("/userforgetpass/**").hasRole("ADMIN")
+				.antMatchers("/adduser").hasRole("ADMIN")
 				.antMatchers("/**").hasRole("ADMIN")
 				.antMatchers("/**").hasRole("USER")
 				.and().formLogin().loginPage("/login.jsp").successHandler(successHandler)
