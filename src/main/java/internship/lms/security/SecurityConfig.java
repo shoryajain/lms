@@ -31,14 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
 				.antMatchers("/test2.html").hasRole("ADMIN")
-				.antMatchers("/userforgetpass/**").hasRole("ANONYMOUS")
-				.antMatchers("/adduser").hasRole("ANONYMOUS")
-				.antMatchers("/userforgetpass/**").hasRole("USER")
-				.antMatchers("/adduser").hasRole("USER")
-				.antMatchers("/userforgetpass/**").hasRole("ADMIN")
-				.antMatchers("/adduser").hasRole("ADMIN")
-				.antMatchers("/**").hasRole("ADMIN")
-				.antMatchers("/**").hasRole("USER")
+				.antMatchers("/userforgetpass/**").hasAnyRole("ANONYMOUS","USER","ADMIN")
+				.antMatchers("/adduser").hasAnyRole("ANONYMOUS","USER","ADMIN")
+				.antMatchers("/**").hasAnyRole("USER","ADMIN")
 				.and().formLogin().loginPage("/login.jsp").successHandler(successHandler)
 				.permitAll().and().logout().permitAll();
 	}
