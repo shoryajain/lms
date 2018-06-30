@@ -3,7 +3,7 @@
 
 <html>
 	<head>
-		<title>Employees Login</title>
+		<title>Library Management System-Login</title>
 	</head>		
 
 	<body>
@@ -13,7 +13,6 @@
 		 <c:url value="/login" var="/login"/>
  <form action="${loginProcessingUrl}" method="post">
     <fieldset>
-        <legend>Please Login</legend>
         <!-- use param.error assuming FormLoginConfigurer#failureUrl contains the query parameter error -->
         <c:if test="${param.error != null}">
             <div>
