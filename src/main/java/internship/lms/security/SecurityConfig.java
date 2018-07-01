@@ -9,16 +9,20 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	private AuthenticationHandler successHandler;
+	private SuccessHandler successHandler;
 	
 	@Autowired
 	DataSource dataSource;
+	
+	@Autowired
+	private RestAccessDeniedHandler restAccessDeniedHandler;
 	
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -34,8 +38,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/userforgetpass/**").hasAnyRole("ANONYMOUS","USER","ADMIN")
 				.antMatchers("/adduser").hasAnyRole("ANONYMOUS","USER","ADMIN")
 				.antMatchers("/**").hasAnyRole("USER","ADMIN")
+				.anyRequest().authenticated()
+			    .and()
+				.exceptionHandling()
+			    .accessDeniedHandler(restAccessDeniedHandler)
 				.and().formLogin().loginPage("/login.jsp").successHandler(successHandler)
-				.permitAll().and().logout().permitAll();
+				.permitAll().and().logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
+			    .deleteCookies("JSESSIONID")
+			    .permitAll();
 	}
 
 } 
