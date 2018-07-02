@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import internship.lms.user.UserService;
+
 
 
 @Service
@@ -12,6 +14,9 @@ public class RoleService {
 	
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	@Autowired
+	private UserService us;
 	
 	public List<Role> getAllRoles() {
 		 List<Role> roles = new ArrayList<>();
@@ -43,4 +48,18 @@ public class RoleService {
 			return false;
 		}
 		}
+
+	public boolean authentication(String username, String password) {
+		if(us.checkUserUname(username)) {
+			if(us.getUser(username).getPass().equals(password)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
 	}
+}
