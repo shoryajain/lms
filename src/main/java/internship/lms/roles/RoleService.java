@@ -1,13 +1,10 @@
 package internship.lms.roles;
 
 import java.util.ArrayList;
-
-
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import internship.lms.user.UserService;
+
 
 
 @Service
@@ -15,9 +12,6 @@ public class RoleService {
 	
 	@Autowired
 	private RoleRepository roleRepository;
-	
-	@Autowired
-	private UserService us;
 	
 	public List<Role> getAllRoles() {
 		 List<Role> roles = new ArrayList<>();

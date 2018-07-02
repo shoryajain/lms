@@ -43,8 +43,8 @@ public class RoleController {
 	}
 
 	@RequestMapping(method=RequestMethod.POST, value="/admin/role/{username}") 
-	public void addRole(@RequestBody String role, @PathVariable String username) {
-		roleService.addRole(role, username);
+	public void addRole(@PathVariable String username) {
+		roleService.addRole("ROOT_USER", username);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/admin/role/{username}")
