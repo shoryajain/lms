@@ -3,17 +3,14 @@
 
 <html>
 	<head>
-		<title>Employees Login</title>
+		<title>Library Management System-Login</title>
 	</head>		
 
 	<body>
-	
-		<h1><strong>Employees Login</strong></h1>
-						
+
 		 <c:url value="/login" var="/login"/>
  <form action="${loginProcessingUrl}" method="post">
     <fieldset>
-        <legend>Please Login</legend>
         <!-- use param.error assuming FormLoginConfigurer#failureUrl contains the query parameter error -->
         <c:if test="${param.error != null}">
             <div>
@@ -36,11 +33,6 @@
         <p>
         <label for="password">Password</label>
         <input type="password" id="password" name="password"/>
-        </p>
-        <!-- if using RememberMeConfigurer make sure remember-me matches RememberMeConfigurer#rememberMeParameter -->
-        <p>
-        <label for="remember-me">Remember Me?</label>
-        <input type="checkbox" id="remember-me" name="remember-me"/>
         </p>
         <div>
             <button type="submit" class="btn">Log in</button>
