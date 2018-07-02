@@ -4,10 +4,12 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -22,6 +24,7 @@ public class RoleController {
 	
 	@RequestMapping("/admin/roles")
 	@JsonView(View.UserNameAlso.class)
+	@CrossOrigin("http://localhost:8081")
 	public List<Role> getAllRoles() {
 		return roleService.getAllRoles();
 	}
@@ -38,13 +41,20 @@ public class RoleController {
 	
 	@RequestMapping("/admin/role/{username}")
 	@JsonView(View.UserNameAlso.class)
+	@CrossOrigin("http://localhost:8081")
 	public Role getRole(@PathVariable String username) {
 		return roleService.getRole(username);
 	}
+	
+	@CrossOrigin("http://localhost:8081")
+	@RequestMapping("/authentication")
+	public boolean authentication(@RequestParam String username,@RequestParam String password) {
+		return roleService.authentication(username,password);
+	}
 
 	@RequestMapping(method=RequestMethod.POST, value="/admin/role/{username}") 
-	public void addRole(@RequestBody String role, @PathVariable String username) {
-		roleService.addRole(role, username);
+	public void addRole(@PathVariable String username) {
+		roleService.addRole("ROOT_USER", username);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/admin/role/{username}")
@@ -53,6 +63,7 @@ public class RoleController {
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/admin/role/{username}")
+	@CrossOrigin("http://localhost:8081")
 	public void deleteRole(@PathVariable String username) {
 		roleService.deleteRole(username);
 	}
