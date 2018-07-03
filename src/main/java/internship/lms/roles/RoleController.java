@@ -17,38 +17,36 @@ import com.fasterxml.jackson.annotation.JsonView;
 import internship.lms.view.View;
 
 @RestController
+@CrossOrigin
 public class RoleController {
 	
 	@Autowired 
 	private RoleService roleService;
 	
-	@RequestMapping("/admin/roles")
+	@RequestMapping(method = RequestMethod.GET, value="/admin/roles")
 	@JsonView(View.UserNameAlso.class)
-	@CrossOrigin("http://localhost:8081")
 	public List<Role> getAllRoles() {
 		return roleService.getAllRoles();
 	}
 	
-	@RequestMapping("/admin/rolecheck/{username}") 
+	@RequestMapping(method = RequestMethod.GET, value="/admin/rolecheck/{username}") 
 	public boolean checkRole(@PathVariable String username) {
 		return roleService.checkRole(username);
 	}
 	
-	@RequestMapping("/role")
+	@RequestMapping(method = RequestMethod.GET, value="/role")
 	public String getRole() {
 		return "Please enter a valid id";
 	}
 	
-	@RequestMapping("/admin/role/{username}")
+	@RequestMapping(method = RequestMethod.GET, value="/admin/role/{username}")
 	@JsonView(View.UserNameAlso.class)
-	@CrossOrigin("http://localhost:8081")
 	public Role getRole(@PathVariable String username) {
 		return roleService.getRole(username);
 	}
 	
-	@CrossOrigin("http://localhost:8081")
-	@RequestMapping("/authentication")
-	public boolean authentication(@RequestParam String username,@RequestParam String password) {
+	@RequestMapping(method = RequestMethod.GET, value="/authentication")
+	public boolean authentication(@RequestParam(required=true) String username,@RequestParam(required=true) String password) {
 		return roleService.authentication(username,password);
 	}
 
@@ -63,7 +61,6 @@ public class RoleController {
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/admin/role/{username}")
-	@CrossOrigin("http://localhost:8081")
 	public void deleteRole(@PathVariable String username) {
 		roleService.deleteRole(username);
 	}
