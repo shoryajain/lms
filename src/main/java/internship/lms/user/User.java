@@ -32,7 +32,8 @@ public class User {
 	private long pno;
 	@JsonView(View.UserWithoutBooks.class)
 	private String email;
-	private int enabled;
+	@JsonView(View.UserNameAlso.class)
+	private String role;
 	
 	@OneToMany
 	@JoinColumn(name = "book_id", nullable=true)
@@ -42,7 +43,7 @@ public class User {
 	public User() {
 		super();
 		this.age=0;
-		this.enabled = 1;
+		this.role = "user";
 	}
 
 	public User(String uname, String pass, String fname, String lname, int age, long pno, String email, List<Book> books) {
@@ -55,7 +56,7 @@ public class User {
 		this.pno = pno;
 		this.email = email;
 		this.books = books;
-		this.enabled = 1;
+		this.role = "user";
 	}
 
 	public String getUname() {
@@ -124,5 +125,13 @@ public class User {
 	
 	public void issuingBook(Book b) {
 		this.books.add(b);
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 }
