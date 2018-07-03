@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,83 +17,84 @@ import internship.lms.view.View;
 
 
 @RestController
+@CrossOrigin
 public class BookController {
 
 	@Autowired 
 	private BookService bookService;
 	
-	@RequestMapping("/admin/books")
+	@RequestMapping(method = RequestMethod.GET, value="/admin/books")
 	@JsonView(View.AllBookDetails.class)
 	public List<Book> getAllBooks() {
 		return bookService.getAllBooks();
 	}
 	
-	@RequestMapping("/admin/bookcheck/{id}") 
+	@RequestMapping(method = RequestMethod.GET, value="/admin/bookcheck/{id}") 
 	public boolean checkBookId(@PathVariable long id) {
 		return bookService.checkBookId(id);
 	}
 	
-	@RequestMapping("/book")
+	@RequestMapping(method = RequestMethod.GET, value="/book")
 	public String getBook() {
 		return "Please enter a valid id";
 	}
 	
-	@RequestMapping("/admin/book/id/{id}")
+	@RequestMapping(method = RequestMethod.GET, value="/admin/book/id/{id}")
 	@JsonView(View.AllBookDetails.class)
 	public Book getBook(@PathVariable long id) {
 		return bookService.getBook(id);
 	}
 	
-	@RequestMapping("/book/name/{name}")
+	@RequestMapping(method = RequestMethod.GET, value="/book/name/{name}")
 	@JsonView(View.MainDetails.class)
 	public Book getBookByName(@PathVariable String name) {
 		return bookService.getBookByName(name);
 	}
 	
-	@RequestMapping("/book/author/{name}")
+	@RequestMapping(method = RequestMethod.GET, value="/book/author/{name}")
 	@JsonView(View.MainDetails.class)
 	public Book getBookByAuthorName(@PathVariable String name) {
 		return bookService.getBookByAuthorName(name);
 	}
 	
-	@RequestMapping("/book/lang/{lang}")
+	@RequestMapping(method = RequestMethod.GET, value="/book/lang/{lang}")
 	@JsonView(View.MainDetails.class)
 	public Book getBookByLang(@PathVariable String lang) {
 		return bookService.getBookByLang(lang);
 	}
 	
-	@RequestMapping("/books/genres")
+	@RequestMapping(method = RequestMethod.GET, value="/books/genres")
 	public Set<String> getGenresOnly() {
 		return bookService.getGenresOnly();
 	}
 	
-	@RequestMapping("/books/authors")
+	@RequestMapping(method = RequestMethod.GET, value="/books/authors")
 	public Set<String> getAuthorNamesOnly() {
 		return bookService.getAuthorNamesOnly();
 	}
 
-	@RequestMapping("/admin/books/total")
+	@RequestMapping(method = RequestMethod.GET, value="/admin/books/total")
 	public int totalBooks() {
 		return bookService.totalBooks();
 	}
 	
-	@RequestMapping("/admin/books/total/unique")
+	@RequestMapping(method = RequestMethod.GET, value="/admin/books/total/unique")
 	public int totalUniqueBooks() {
 		return bookService.totalUniqueBooks();
 	}
 	
-	@RequestMapping("/admin/books/total/issued")
+	@RequestMapping(method = RequestMethod.GET, value="/admin/books/total/issued")
 	public int totalIsseudBooks() {
 		return bookService.totalIssuedBooks();
 	}
 	
-	@RequestMapping("/admin/books/total/issued/author/{name}")
+	@RequestMapping(method = RequestMethod.GET, value="/admin/books/total/issued/author/{name}")
 	@JsonView(View.AllBookDetails.class)
 	public Set<Book> totalIssuedBooksByAuthor(@PathVariable String name) {
 		return bookService.totalIssuedBooksByAuthor(name);
 	}
 	
-	@RequestMapping("/admin/books/total/issued/book/{name}")
+	@RequestMapping(method = RequestMethod.GET, value="/admin/books/total/issued/book/{name}")
 	@JsonView(View.AllBookDetails.class)
 	public Set<Book> totalIssuedBooksByBookName(@PathVariable String name) {
 		return bookService.totalIssuedBooksByBookName(name);

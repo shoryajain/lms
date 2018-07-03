@@ -3,6 +3,7 @@ package internship.lms.author;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,27 +11,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin
 public class AuthorController {
 	
 	@Autowired 
 	private AuthorService authorService;
 	
-	@RequestMapping("/admin/authors")
+	@RequestMapping(method = RequestMethod.GET, value="/admin/authors")
 	public List<Author> getAllAuthors() {
 		return authorService.getAllAuthors();
 	}
 	
-	@RequestMapping("/admin/authorcheck/{id}") 
+	@RequestMapping(method = RequestMethod.GET, value="/admin/authorcheck/{id}") 
 	public boolean checkAuthorId(@PathVariable String id) {
 		return authorService.checkAuthorId(id);
 	}
 	
-	@RequestMapping("/author")
+	@RequestMapping(method = RequestMethod.GET, value="/author")
 	public String getAuthor() {
 		return "Please enter a valid id";
 	}
 	
-	@RequestMapping("/admin/author/{id}")
+	@RequestMapping(method = RequestMethod.GET, value="/admin/author/{id}")
 	public Author getAuthor(@PathVariable String id) {
 		return authorService.getAuthor(id);
 	}

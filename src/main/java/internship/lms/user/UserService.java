@@ -3,12 +3,14 @@ package internship.lms.user;
 import java.util.ArrayList;
 
 
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import internship.lms.book.Book;
 import internship.lms.book.BookRepository;
+
 
 
 @Service
@@ -78,5 +80,23 @@ public class UserService {
 			return false;
 		}
 	}
+	
+	public boolean authentication(String username, String password) {
+		if(this.checkUserUname(username)) {
+			if(this.getUser(username).getPass().equals(password)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
 
+	public void updateRole(String role, String username) {
+		this.getUser(username).setRole(role);
+		
+	}
 }
