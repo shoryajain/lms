@@ -45,7 +45,7 @@ public class RoleController {
 		return roleService.getRole(username);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value="/authentication")
+	@RequestMapping(method = RequestMethod.GET, value="/authentication", produces = "application/json")
 	public boolean authentication(@RequestParam(required=true) String username,@RequestParam(required=true) String password) {
 		return roleService.authentication(username,password);
 	}
