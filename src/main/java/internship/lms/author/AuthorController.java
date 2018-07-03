@@ -15,22 +15,22 @@ public class AuthorController {
 	@Autowired 
 	private AuthorService authorService;
 	
-	@RequestMapping("/admin/authors")
+	@RequestMapping(method = RequestMethod.GET, value="/admin/authors")
 	public List<Author> getAllAuthors() {
 		return authorService.getAllAuthors();
 	}
 	
-	@RequestMapping("/admin/authorcheck/{id}") 
+	@RequestMapping(method = RequestMethod.GET, value="/admin/authorcheck/{id}") 
 	public boolean checkAuthorId(@PathVariable String id) {
 		return authorService.checkAuthorId(id);
 	}
 	
-	@RequestMapping("/author")
+	@RequestMapping(method = RequestMethod.GET, value="/author")
 	public String getAuthor() {
 		return "Please enter a valid id";
 	}
 	
-	@RequestMapping("/admin/author/{id}")
+	@RequestMapping(method = RequestMethod.GET, value="/admin/author/{id}")
 	public Author getAuthor(@PathVariable String id) {
 		return authorService.getAuthor(id);
 	}

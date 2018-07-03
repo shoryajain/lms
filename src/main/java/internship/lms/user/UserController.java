@@ -24,45 +24,45 @@ public class UserController {
 	@Autowired 
 	private UserService userService;
 	
-	@RequestMapping("/admin/users")
+	@RequestMapping(method = RequestMethod.GET, value="/admin/users")
 	@JsonView(View.UserWithoutBooks.class)
 	public List<User> getAllUsers() {
 		return userService.getAllUsers();
 	}
 	
-	@RequestMapping("/usercheck/{uname}") 
+	@RequestMapping(method = RequestMethod.GET, value="/usercheck/{uname}") 
 	public boolean checkUserId(@PathVariable String uname) {
 		return userService.checkUserUname(uname);
 	}
 	
-	@RequestMapping("/user")
+	@RequestMapping(method = RequestMethod.GET, value="/user")
 	public String getUserr() {
 		return "Please enter a valid id";
 	}
 	
-	@RequestMapping("/userforgetpass/{pno}")
+	@RequestMapping(method = RequestMethod.GET, value="/userforgetpass/{pno}")
 	public boolean checkUserPno(@PathVariable long pno) {
 		return userService.checkUserPno(pno);
 	}
 	
-	@RequestMapping("/userforgetpass/true/{pno}")
+	@RequestMapping(method = RequestMethod.GET, value="/userforgetpass/true/{pno}")
 	@JsonView(View.UserLoginDetails.class)
 	public User getUnameAndPass(@PathVariable long pno) {
 		return userService.getUserByPno(pno);
 	}
 	
-	@RequestMapping("/userforgetpass/false") 
+	@RequestMapping(method = RequestMethod.GET, value="/userforgetpass/false") 
 	public String getUnameAndPass() {
 		return "No user with given phone number exists";
 	}
 	
-	@RequestMapping("/admin/user/{uname}")
+	@RequestMapping(method = RequestMethod.GET, value="/admin/user/{uname}")
 	@JsonView(View.UserWithoutBooks.class)
 	public User getUser(@PathVariable String uname) {
 		return userService.getUser(uname);
 	}
 	
-	@RequestMapping("/user/{uname}/issuedbooks")
+	@RequestMapping(method = RequestMethod.GET, value="/user/issuedbooks/{uname}")
 	@JsonView(View.IssuedBooks.class)
 	public List<Book> getBooks(@PathVariable String uname) {
 		return userService.getBooks(uname);
